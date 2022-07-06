@@ -186,10 +186,11 @@ STATIC_URL = '/static/'
 https://devcenter.heroku.com/articles/django-assets
 '''
 # Extra places for collectstatic to find static files.
+'''
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
+'''
 
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
