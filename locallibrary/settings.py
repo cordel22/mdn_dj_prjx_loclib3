@@ -17,7 +17,14 @@ from pathlib import Path
 import os # needed by code below
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+'''
 BASE_DIR = Path(__file__).resolve().parent.parent
+'''
+
+'''
+https://devcenter.heroku.com/articles/django-assets
+'''
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -27,7 +34,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 '''
 SECRET_KEY = 'django-insecure-93ls98-dhcwc$3ivm!0gc#l^j_bg9k46ik(67o(56*e7pv_63g'
 '''
+''' duplicitne
 import os
+'''
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'cg#p$g+j9tax!#a3cup@1$8obt2_+&k3q+pmu)5%asj6yjpkag')
 
 
@@ -161,10 +170,25 @@ DATABASES['default'].update(db_from_env)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
+'''
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+'''
+
+'''
+https://devcenter.heroku.com/articles/django-assets
+https://docs.djangoproject.com/en/1.9/howto/static-files/
+'''
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
+'''
+https://devcenter.heroku.com/articles/django-assets
+'''
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 
 # Simplified static file serving.
@@ -177,10 +201,10 @@ django_heroku.settings(locals())
 '''
 https://medium.com/@jonatanvm/how-to-deploy-a-django-project-in-less-than-5-minutes-with-heroku-e087ad56c948
 '''
-
+'''
 if "DYNO" in os.environ:
     STATIC_ROOT = 'static'
     ALLOWED_HOSTS = ['*']
     DEBUG = False
-
+'''
 
